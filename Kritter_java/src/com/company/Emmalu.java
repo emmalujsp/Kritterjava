@@ -2,6 +2,7 @@ package com.company;
 import java.util.Scanner;
 class SBI
 {
+    //changes by adarsh
     Scanner sc = new Scanner(System.in);
     int id;
  String name;
