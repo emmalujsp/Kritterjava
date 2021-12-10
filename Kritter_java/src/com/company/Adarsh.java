@@ -4,27 +4,39 @@ import java.util.*;
 
 class bank {
     Scanner sc=new Scanner(System.in);
+    Random ra = new Random();
     int age;
     String name;
+    int acno=ra.nextInt(123456),temp;
+
     void createac() {
         System.out.println("Enter your name : ");
         name = sc.nextLine();
         System.out.println("Enter your age : ");
         age = sc.nextInt();
+        System.out.println("Your ac has been created. \nThis is your ac no : "+acno);
     }
 
     void acprint() {
-    System.out.println("Your age = "+age);
-    System.out.println("Name = "+name);
+        System.out.print("Enter your ac no : ");
+        temp= sc.nextInt();
+        if(temp==acno) {
+            System.out.println("Your age = " + age);
+            System.out.println("Name = " + name);
+        }
+        else{
+            System.out.println("No account found");
+        }
+
     }
 }
 public class Adarsh {
     public static void main(String[] args) {
         int a;
         char b;
+        Scanner sc = new Scanner(System.in);
+        bank c1 = new bank();
         do {
-           Scanner sc = new Scanner(System.in);
-           bank c1 = new bank();
            System.out.println("Welcome\nPress 1 for creating an account\nPress 2 for display");
            a = sc.nextInt();
            switch (a) {
