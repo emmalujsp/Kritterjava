@@ -1,6 +1,6 @@
 package com.company;
 
-import org.omg.Messaging.SyncScopeHelper;
+
 
 public class Sandra {
     public static void main(String[] args) {
