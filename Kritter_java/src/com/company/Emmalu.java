@@ -11,7 +11,13 @@ class SBI
  void add()
  {
      System.out.print("Enter name :");
-     String name = sc.nextLine();
+     name = sc.nextLine();
+     System.out.print("Enter id :");
+     id = sc.nextInt();
+     System.out.print("Enter Balance :");
+     balance = sc.nextFloat();
+     System.out.print("Enter gender(m/f) :");
+     gender = sc.next().charAt(0);
  }
 
 
@@ -19,6 +25,8 @@ class SBI
 public class Emmalu {
     public static void main(String[] args)
     {
+        SBI client1=new SBI();
+        client1.add();
         System.out.print("emmalu");
     }
 }
