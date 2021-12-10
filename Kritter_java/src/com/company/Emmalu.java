@@ -6,6 +6,11 @@ class SBI
     //changes by adarsh
     Scanner sc = new Scanner(System.in);
     int id;
+    SBI(int x)
+    {
+        System.out.println("obeject cre");
+        id=x;
+    }
  String name;
  float balance;
  char gender;
@@ -13,8 +18,6 @@ class SBI
  {
      System.out.print("Enter name :");
      name = sc.nextLine();
-     System.out.print("Enter id :");
-     id = sc.nextInt();
      System.out.print("Enter Balance :");
      balance = sc.nextFloat();
      System.out.print("Enter gender(m/f) :");
@@ -33,7 +36,7 @@ class SBI
 public class Emmalu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        SBI client1 = new SBI();
+        SBI client1 = new SBI(1);
         emdetails x=new emdetails();
         x.msg();
         char ch;
