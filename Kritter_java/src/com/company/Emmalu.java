@@ -19,14 +19,30 @@ class SBI
      System.out.print("Enter gender(m/f) :");
      gender = sc.next().charAt(0);
  }
+ void print()
+ {
+     System.out.print("Name :"+name);
+     System.out.print("Id :"+id);
+     System.out.print("Balance :"+balance);
+     System.out.print("Gender :"+gender);
+ }
 
 
 }
 public class Emmalu {
-    public static void main(String[] args)
-    {
-        SBI client1=new SBI();
-        client1.add();
-        System.out.print("emmalu");
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        SBI client1 = new SBI();
+    System.out.println("Welcome");
+        System.out.print("1. Add Details\n2. Print Details\nEnter your Choice :");
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                client1.add();
+                break;
+            case 2:
+                client1.print();
+                break;
+        }
     }
 }
