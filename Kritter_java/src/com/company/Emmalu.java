@@ -33,16 +33,23 @@ public class Emmalu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         SBI client1 = new SBI();
-    System.out.println("Welcome");
-        System.out.print("1. Add Details\n2. Print Details\nEnter your Choice :");
-        int choice = sc.nextInt();
-        switch (choice) {
-            case 1:
-                client1.add();
-                break;
-            case 2:
-                client1.print();
-                break;
-        }
+        char ch;
+        System.out.println("Welcome");
+        do {
+
+
+            System.out.print("1. Add Details\n2. Print Details\nEnter your Choice :");
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    client1.add();
+                    break;
+                case 2:
+                    client1.print();
+                    break;
+            }
+            System.out.print("Do you want to continue(y/n) :");
+            ch = sc.next().charAt(0);
+        }while(ch=='y' | ch=='Y');
     }
 }
