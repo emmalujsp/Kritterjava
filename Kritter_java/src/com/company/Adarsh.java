@@ -80,8 +80,8 @@ public class Adarsh {
            System.out.print("\n\nWelcome\nPress 1 for creating an account\n" +
                    "Press 2 for display\n" +
                    "Press 3 to withdraw"+
-                   "Press 4 to deposite"+
-                   "Press 5 to exit" +
+                   "\nPress 4 to deposite"+
+                   "\nPress 5 to exit" +
                    "\n\n Please enter your response : ");
            a = sc.nextInt();
            switch (a) {
