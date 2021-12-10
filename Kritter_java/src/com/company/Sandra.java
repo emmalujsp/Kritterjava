@@ -1,7 +1,5 @@
 package com.company;
 
-import org.omg.Messaging.SyncScopeHelper;
-
 public class Sandra {
     static void myMethods(String names){
         System.out.println(names);
