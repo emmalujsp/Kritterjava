@@ -21,10 +21,10 @@ class SBI
  }
  void print()
  {
-     System.out.print("Name :"+name);
-     System.out.print("Id :"+id);
-     System.out.print("Balance :"+balance);
-     System.out.print("Gender :"+gender);
+     System.out.println("Name :"+name);
+     System.out.println("Id :"+id);
+     System.out.println("Balance :"+balance);
+     System.out.println("Gender :"+gender);
  }
 
 
