@@ -3,8 +3,13 @@ package com.company;
 import org.omg.Messaging.SyncScopeHelper;
 
 public class Sandra {
+    static void myMethods(String names){
+        System.out.println(names);
+    }
+
     public static void main(String[] args) {
         System.out.println("Sandra");
+        myMethods("Maria");
         int num1= 45;
         int num2= 59;
             if (num1>num2) {
@@ -14,5 +19,13 @@ public class Sandra {
                 System.out.println("NUmber2 is greater");
 
         }
+        for (int i = 0; i < 10; i++) {
+            if (i == 5) {
+                continue;
+            }
+            System.out.println(i);
+        }
+
+
     }
 }
