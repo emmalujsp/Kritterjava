@@ -34,7 +34,7 @@ public class Emmalu {
         Scanner sc = new Scanner(System.in);
         SBI client1 = new SBI();
         char ch;
-        System.out.println("Welcome");
+        System.out.println("Welcome To Bank");
         do {
             {
                 System.out.print("1. Add Details\n2. Print Details\nEnter your Choice :");
