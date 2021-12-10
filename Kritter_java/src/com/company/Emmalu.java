@@ -40,6 +40,7 @@ public class Emmalu {
         emdetails x=new emdetails();
         x.msg();
         char ch;
+        System.out.println("Emmaljdvjiwvs in nwnvsuuvrjkern ");
         System.out.println("Welcome");
         do {
 
