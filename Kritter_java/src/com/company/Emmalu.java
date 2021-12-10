@@ -1,5 +1,6 @@
 package com.company;
 import java.util.Scanner;
+import emjdetails.*;
 class SBI
 {
     //changes by adarsh
@@ -33,6 +34,8 @@ public class Emmalu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         SBI client1 = new SBI();
+        emdetails x=new emdetails();
+        x.msg();
         char ch;
         System.out.println("Welcome");
         do {
