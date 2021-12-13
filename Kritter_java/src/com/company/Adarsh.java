@@ -2,6 +2,13 @@ package com.company;
 import java.lang.*;
 import java.util.*;
 
+class SIB extends bank{
+    void loan(){
+        int loan_amount;
+
+    }
+}
+
 class bank {
     Scanner sc=new Scanner(System.in);
     Random ra = new Random();
@@ -67,15 +74,14 @@ class bank {
             System.out.println("No account found");
         }
     }
-
-
 }
+
 public class Adarsh {
     public static void main(String[] args) {
         int a;
         char b;
         Scanner sc = new Scanner(System.in);
-        bank c1 = new bank();
+        SIB c1 = new SIB();
         do {
            System.out.print("\n\nWelcome\nPress 1 for creating an account\n" +
                    "Press 2 for display\n" +
