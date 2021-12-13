@@ -1,20 +1,26 @@
 package com.company;
+import java.util.ArrayList;
 import java.util.Scanner;
 import emjdetails.*;
 class SBI
 {
     //changes by adarsh
     Scanner sc = new Scanner(System.in);
-    int id;
-    SBI(int x)
+    int id=21;
+    SBI()
     {
-        System.out.println("obeject cre");
-        id=x;
+        System.out.print("Enter name :");
+        name = sc.nextLine();
+        System.out.print("Enter Balance :");
+        balance = sc.nextFloat();
+        System.out.print("Enter gender(m/f) :");
+        gender = sc.next().charAt(0);
     }
- String name;
+
+    String name;
  float balance;
  char gender;
- void add()
+ void adddetails()
  {
      System.out.print("Enter name :");
      name = sc.nextLine();
@@ -23,7 +29,7 @@ class SBI
      System.out.print("Enter gender(m/f) :");
      gender = sc.next().charAt(0);
  }
- void print()
+ void printdeatils()
  {
      System.out.println("Name :"+name);
      System.out.println("Id :"+id);
@@ -32,12 +38,13 @@ class SBI
  }
 
 
+
 }
 public class Emmalu {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        SBI client1 = new SBI(1);
+        Scanner sc = new Scanner(System.in);;
         emdetails x=new emdetails();
+        ArrayList<SBI> accounts = new ArrayList<SBI>();
         x.msg();
         char ch;
         System.out.println("Welcome");
@@ -48,10 +55,13 @@ public class Emmalu {
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    client1.add();
+                    accounts.add(new SBI());
                     break;
-                case 2:
-                    client1.print();
+                case 2:int len=accounts.size();
+                    for(int i=0;i<len;i++)
+                    {
+                    accounts.get(i).printdeatils();
+                    }
                     break;
             }
             System.out.print("Do you want to continue(y/n) :");
