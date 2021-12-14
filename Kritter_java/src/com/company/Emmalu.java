@@ -6,6 +6,7 @@ import emjdetails.*;
 class SBI
 {
     //changes by adarsh
+    //SBI CLASS
     Scanner sc = new Scanner(System.in);
     int id=21;
     SBI()
