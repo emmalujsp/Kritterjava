@@ -5,6 +5,9 @@ import emjdetails.*;
 class BANK {
     //changes by adarsh and emmalu
     //Emmalu Change
+    static String Bname="Central Bank";
+    static String CEO="K C JOSEPH";
+    static int EST=1983;
     Scanner sc = new Scanner(System.in);
     int id = 1000;
     String name;
@@ -23,13 +26,11 @@ class BANK {
     }
 
 
-    void adddetails() {
-        System.out.print("Enter name :");
-        name = sc.nextLine();
-        System.out.print("Enter Balance :");
-        balance = sc.nextFloat();
-        System.out.print("Enter gender(m/f) :");
-        gender = sc.next().charAt(0);
+    static void Bankdetails() {
+        System.out.println("\tBank Name:"+Bname);
+        System.out.println("\tCEO :"+CEO);
+        System.out.println("\tEST :"+EST);
+        System.out.println("---------------------------");
     }
 
     void printdeatils() {
@@ -43,6 +44,9 @@ class BANK {
     {
         //changes by adarsh and emmalu
         //Emmalu Change
+        static String Bname="State Bank";
+        static String CEO="Emmalu JOSEPH";
+        static int EST=2000;
         Scanner sc = new Scanner(System.in);
         int id=1000;
         String name;
@@ -60,14 +64,12 @@ class BANK {
         }
 
 
-        void adddetails()
+        static void Bankdetails()
         {
-            System.out.print("Enter name :");
-            name = sc.nextLine();
-            System.out.print("Enter Balance :");
-            balance = sc.nextFloat();
-            System.out.print("Enter gender(m/f) :");
-            gender = sc.next().charAt(0);
+            System.out.println("\tBank Name:"+Bname);
+            System.out.println("\tCEO :"+CEO);
+            System.out.println("\tEST :"+EST);
+            System.out.println("---------------------------");
         }
         void printdeatils()
         {
@@ -85,7 +87,7 @@ public class Emmalu
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        ;
+
         emdetails x = new emdetails();
         x.msg();
         ArrayList<BANK> Caccounts = new ArrayList<BANK>();
@@ -98,12 +100,14 @@ public class Emmalu
 
         do
         {
+
             System.out.print("1. CENTRAL BANK\n2. STATE  BANK\nEnter your Choice :");
             int cho = sc.nextInt();
             switch (cho) {
 
                 case 1:
                          do {
+                                    BANK.Bankdetails();
                                     System.out.print("1. Add Details\n2. Print Details\nEnter your Choice :");
                                     int choice = sc.nextInt();
                                     switch (choice) {
@@ -123,7 +127,10 @@ public class Emmalu
                                 } while (ch == 'y' | ch == 'Y');
                          break;
 
-                case 2:do {
+                case 2:
+                        do
+                             {
+                                STATEBANK.Bankdetails();
                                         System.out.print("1. Add Details\n2. Print Details\nEnter your Choice :");
                                 int choice = sc.nextInt();
                                 switch (choice) {
@@ -144,7 +151,7 @@ public class Emmalu
                     break;
             }
 
-            System.out.print("Do you want to continue(y/n) :");
+            System.out.print("Do you want to continue MAain Menu(y/n) :");
             ch = sc.next().charAt(0);
 
         } while (ch == 'y' | ch == 'Y');
