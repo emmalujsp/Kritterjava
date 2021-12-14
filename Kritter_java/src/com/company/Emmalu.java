@@ -7,7 +7,8 @@ class BANK
 {
     //changes by adarsh
     /*hi all
-    adarsh sursh*/
+    adarsh sursh
+    trials*/
     Scanner sc = new Scanner(System.in);
     int id=21;
     String name;
