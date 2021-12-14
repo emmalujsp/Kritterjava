@@ -3,13 +3,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 import emjdetails.*;
-class SBI
+class BANK
 {
     //changes by adarsh
-    //SBI CLASS
+    //ne change
     Scanner sc = new Scanner(System.in);
     int id=21;
-    SBI()
+    String name;
+    float balance;
+    char gender;
+    BANK()
     {
         System.out.print("Enter name :");
         name = sc.nextLine();
@@ -19,9 +22,7 @@ class SBI
         gender = sc.next().charAt(0);
     }
 
-    String name;
- float balance;
- char gender;
+
  void adddetails()
  {
      System.out.print("Enter name :");
@@ -46,7 +47,7 @@ public class Emmalu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);;
         emdetails x=new emdetails();
-        ArrayList<SBI> accounts = new ArrayList<SBI>();
+        ArrayList<BANK> accounts = new ArrayList<BANK>();
         //LinkedList<SBI> ll = new LinkedList<SBI>();
         x.msg();
         char ch;
@@ -58,7 +59,7 @@ public class Emmalu {
             int choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    accounts.add(new SBI());
+                    accounts.add(new BANK());
                     break;
                 case 2:int len=accounts.size();
                     for(int i=0;i<len;i++)
