@@ -5,8 +5,8 @@ import java.util.Scanner;
 import emjdetails.*;
 class BANK
 {
-    //changes by adarsh
-    //ne change
+    //changes by adarsh and emmalu
+    //Emmalu Change
     Scanner sc = new Scanner(System.in);
     int id=21;
     String name;
