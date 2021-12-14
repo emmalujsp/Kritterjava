@@ -1,5 +1,6 @@
 package com.company;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 import emjdetails.*;
 class SBI
@@ -47,6 +48,7 @@ public class Emmalu {
         Scanner sc = new Scanner(System.in);;
         emdetails x=new emdetails();
         ArrayList<SBI> accounts = new ArrayList<SBI>();
+        //LinkedList<SBI> ll = new LinkedList<SBI>();
         x.msg();
         char ch;
         System.out.println("Welcome");
