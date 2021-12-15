@@ -1,6 +1,5 @@
 package com.company;
 import java.util.*;
-
 import emjdetails.*;
 class BANK {
     //changes by adarsh and emmalu
@@ -34,10 +33,17 @@ class BANK {
     }
 
     void printdeatils() {
-        System.out.println("Name :" + name);
-        System.out.println("Id :" + id);
-        System.out.println("Balance :" + balance);
-        System.out.println("Gender :" + gender);
+        Formatter fmt = new Formatter();
+        fmt.format("%14s %14s %14s %14s\n", id, name, balance,gender);
+        System.out.println(fmt);
+
+    }
+    void deposit()
+    {
+        System.out.print("Enter the AMount to deposit :");
+        int b= sc.nextInt();
+        balance=balance+b;
+        System.out.println("New Balance :"+balance);
     }
 }
     class STATEBANK
@@ -73,14 +79,63 @@ class BANK {
         }
         void printdeatils()
         {
-            System.out.println("Name :"+name);
-            System.out.println("Id :"+id);
-            System.out.println("Balance :"+balance);
-            System.out.println("Gender :"+gender);
+            Formatter fmt = new Formatter();
+            fmt.format("%14s %14s %14s %14s\n", id, name, balance,gender);
+            System.out.println(fmt);
+        }
+        void deposit()
+        {
+            System.out.print("Enter the AMount to deposit :");
+            int b= sc.nextInt();
+            balance=balance+b;
+            System.out.println("New Balance :"+balance);
+
         }
 
 
 
+}
+class SBI extends BANK
+{
+
+    SBI(int i) {
+        super(i);
+    }
+
+    static void loan()
+        {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Loan details");
+            System.out.print("Enter the amount for loan :");
+            int loan_amount=sc.nextInt();
+            System.out.print("Enter the NUmber of years :");
+            int loan_years=sc.nextInt();
+            float interest= (float) (loan_amount*0.04*loan_years);
+            float Total=loan_amount+interest;
+            System.out.println("AMount to be repiad :"+Total);
+        }
+}
+class CSB extends BANK
+{
+
+    CSB(int i)
+    {
+        super(1000+i);
+    }
+
+    static void loan()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Loan details");
+        System.out.print("Enter the amount for loan :");
+        int loan_amount=sc.nextInt();
+        System.out.print("Enter the NUmber of years :");
+        int loan_years=sc.nextInt();
+        float interest= (float) (loan_amount*0.05*loan_years);
+        float Total=loan_amount+interest;
+        System.out.println("AMount to be repiad :"+Total);
+
+    }
 }
 public class Emmalu
 {
@@ -90,7 +145,8 @@ public class Emmalu
 
         emdetails x = new emdetails();
         x.msg();
-        ArrayList<BANK> Caccounts = new ArrayList<BANK>();
+        ArrayList<SBI> Sbiaccounts = new ArrayList<SBI>();
+        ArrayList<CSB> Csbaccounts = new ArrayList<CSB>();
         ArrayList<STATEBANK> Saccounts = new ArrayList<STATEBANK>();
         //LinkedList<SBI> ll = new LinkedList<SBI>();
 
@@ -107,22 +163,106 @@ public class Emmalu
 
                 case 1:
                          do {
-                                    BANK.Bankdetails();
-                                    System.out.print("1. Add Details\n2. Print Details\nEnter your Choice :");
-                                    int choice = sc.nextInt();
-                                    switch (choice) {
-                                        case 1:
-                                            int ind=Caccounts.size();
-                                            Caccounts.add(new BANK(ind));
-                                            break;
-                                        case 2:
-                                            int len = Caccounts.size();
-                                            for (int i = 0; i < len; i++) {
-                                                Caccounts.get(i).printdeatils();
+                             BANK.Bankdetails();
+                             System.out.print("1. STATE BANK OF INDIA \n2. CATHOLIC SYRIAN BANK\nEnter your Choice :");
+                             int choi = sc.nextInt();
+                             switch (choi)
+                             {
+
+                                 case 1: char conti1='y';
+                                            while(conti1=='y' | conti1=='Y') {
+                                                System.out.println("Welcome to STATE BANK OF INDIA");
+                                                System.out.println("-------------------------------------");
+                                                System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\nEnter your Choice :");
+                                                int choice = sc.nextInt();
+                                                switch (choice) {
+                                                    case 1:
+                                                        int ind = Sbiaccounts.size();
+                                                        Sbiaccounts.add(new SBI(ind));
+                                                        break;
+                                                    case 2:
+                                                        Formatter fmt = new Formatter();
+                                                        fmt.format("%14s %14s %14s %14s\n", "ID", "NAME", "BALANCE","GENDER");
+                                                        System.out.println(fmt);
+                                                        System.out.println("------------------------------------------------------------------------------");
+                                                        int len = Sbiaccounts.size();
+                                                        for (int i = 0; i < len; i++) {
+                                                            Sbiaccounts.get(i).printdeatils();
+                                                        }
+                                                        break;
+                                                    case 3:
+                                                        System.out.print("Enter Account number to insert :");
+                                                        int acc= sc.nextInt();
+                                                        int flag=0;
+                                                        for(SBI i:Sbiaccounts)
+                                                        {
+                                                            if(i.id==acc)
+                                                            {
+                                                                i.deposit();
+                                                                flag=1;
+                                                            }
+                                                        }
+                                                        if(flag==0)
+                                                        {
+                                                            System.out.println("Enter valid Account Number");
+                                                        }
+                                                        break;
+                                                    case 4:SBI.loan();
+                                                        break;
+
+                                                }
+                                                System.out.print("Do you want to continue(y/n) :");
+                                                conti1 = sc.next().charAt(0);
                                             }
-                                            break;
-                                    }
-                                    System.out.print("Do you want to continue(y/n) :");
+                                             break;
+                                         case 2: char conti2='y';
+                                                 while(conti2=='y' | conti2=='Y') {
+                                                     System.out.println("Welcome to CATHOLIC SYRIAN BANK");
+                                                     System.out.println("-------------------------------------");
+                                                     System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\nEnter your Choice :");
+                                                 int choice2 = sc.nextInt();
+                                                 switch (choice2) {
+                                                     case 1:
+                                                         int ind = Csbaccounts.size();
+                                                         Csbaccounts.add(new CSB(ind));
+                                                         break;
+                                                     case 2:
+                                                         Formatter fmt = new Formatter();
+                                                         fmt.format("%14s %14s %14s %14s\n", "ID", "NAME", "BALANCE","GENDER");
+                                                         System.out.println(fmt);
+                                                         System.out.println("---------------------------------------------------------------------------------------------");
+                                                         int len = Csbaccounts.size();
+                                                         for (int i = 0; i < len; i++) {
+                                                             Csbaccounts.get(i).printdeatils();
+                                                         }
+                                                         break;
+                                                     case 3:
+                                                         System.out.print("Enter Account number to insert :");
+                                                         int acc= sc.nextInt();
+                                                         int flag=0;
+                                                         for(CSB i:Csbaccounts)
+                                                         {
+                                                             if(i.id==acc)
+                                                             {
+                                                                 i.deposit();
+                                                                 flag=1;
+                                                             }
+                                                         }
+                                                         if(flag==0)
+                                                         {
+                                                             System.out.println("Enter valid Account Number");
+                                                         }
+                                                         break;
+                                                     case 4:CSB.loan();
+                                                            break;
+
+                                                 }
+                                                     System.out.print("Do you want to continue(y/n) :");
+                                                     conti2 = sc.next().charAt(0);
+                                                 }
+                                                 break;
+                             }
+                                    System.out.print("Do you want to continue(Cnetral bank menu)(y/n) :");
                                     ch = sc.next().charAt(0);
                                 } while (ch == 'y' | ch == 'Y');
                          break;
@@ -135,7 +275,7 @@ public class Emmalu
                                 int choice = sc.nextInt();
                                 switch (choice) {
                                     case 1:
-                                        int ind=Caccounts.size();
+                                        int ind=Saccounts.size();
                                         Saccounts.add(new STATEBANK(ind));
                                         break;
                                     case 2:
@@ -155,7 +295,7 @@ public class Emmalu
             ch = sc.next().charAt(0);
 
         } while (ch == 'y' | ch == 'Y');
-        Set<BANK> hSet1 = new HashSet<BANK>(Caccounts);
+        /*Set<BANK> hSet1 = new HashSet<BANK>(Caccounts);
         hSet1.addAll(Caccounts);
         System.out.println(hSet1.size());
 
@@ -167,7 +307,7 @@ public class Emmalu
         Set<BANK> union = new HashSet<BANK>(hSet1);
         union.addAll(hSet1);
         System.out.print("Union of the two Set");
-        System.out.println(union);
+        System.out.println(union);*/
 
     }
 }
