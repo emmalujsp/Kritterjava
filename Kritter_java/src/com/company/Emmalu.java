@@ -1,5 +1,5 @@
 package com.company;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 import emjdetails.*;
 class BANK {
@@ -75,7 +75,7 @@ class BANK {
             balance = sc.nextFloat();
             System.out.print("Enter gender(m/f) :");
             gender = sc.next().charAt(0);
-            
+
         }
 
 
@@ -183,10 +183,31 @@ public class Emmalu
                                     while (conti1 == 'y' | conti1 == 'Y') {
                                         System.out.println("Welcome to STATE BANK OF INDIA");
                                         System.out.println("-------------------------------------");
-                                        System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\n5. Download Details\nEnter your Choice :");
+                                        System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\n5. Download Details\n6. Get Details\nEnter your Choice :");
                                         int choice = sc.nextInt();
                                         switch (choice) {
                                             case 1:
+                                                try
+                                                {
+                                                    FileReader file = new FileReader("SBI.txt");
+                                                    BufferedReader br = new BufferedReader(file);
+                                                    String line;
+                                                    while((line = br.readLine()) != null) {
+                                                        //Splits each line into words
+                                                        String[] words = line.split(" ");
+                                                        for (String a:words)
+                                                        {
+                                                            System.out.println(a);
+                                                        }
+
+
+                                                    }
+                                                }
+                                                catch (IOException e)
+                                                {
+                                                    System.out.println("Error");
+                                                }
+
                                                 int ind = Sbiaccounts.size();
                                                 Sbiaccounts.add(new SBI(ind));
                                                 break;
@@ -218,14 +239,39 @@ public class Emmalu
                                                 SBI.loan();
                                                 break;
                                             case 5:
-                                                FileWriter fw=new FileWriter("output.txt");
-                                                for (SBI i:Sbiaccounts )
-                                                {
-                                                    fw.write(i.name);
+                                                try {
+                                                    File new1 = new File("SBI.txt");
+                                                    OutputStream os = new FileOutputStream(new1);
+                                                    PrintWriter pw = new PrintWriter(os);
+                                                    for (SBI i : Sbiaccounts) {
+                                                        pw.print(+ i.id);
+                                                        pw.print(" " + i.name);
+                                                        pw.print(" " + i.balance);
+                                                        pw.println(" " + i.gender);
 
+                                                    }
+                                                    pw.close();
+                                                    System.out.println("Success...");
+
+                                                } catch (IOException e) {
+                                                    System.out.println(e);
                                                 }
+                                                break;
+                                            case 6:
+                                                try {
+                                                    File fr = new File("SBI.txt");
+                                                    Scanner frsc = new Scanner(fr);
+                                                    while (frsc.hasNextLine()) {
+                                                        String data = frsc.nextLine();
+                                                        System.out.println(data);
 
+                                                    }
+
+                                                } catch (FileNotFoundException e) {
+                                                    System.out.println("Error occured");
+                                                }
                                         }
+
                                         System.out.print("Do you want to continue(y/n) :");
                                         conti1 = sc.next().charAt(0);
                                     }
