@@ -31,6 +31,13 @@ class BANK {
         System.out.print("Enter gender(m/f) :");
         gender = sc.next().charAt(0);
     }
+    BANK(int ind,String nm,Float bal,char gen)
+    {
+        id=ind;
+        name=nm;
+        balance=bal;
+        gender=gen;
+    }
 
 
     static void Bankdetails() {
@@ -78,7 +85,6 @@ class BANK {
 
         }
 
-
         static void Bankdetails()
         {
             System.out.println("\tBank Name:"+Bname);
@@ -109,6 +115,10 @@ class SBI extends BANK
 
     SBI(int i) {
         super(i);
+    }
+    SBI(int ind,String name,float bal,char gen)
+    {
+        super(ind,name,bal,gen);
     }
 
     static void loan()
@@ -146,6 +156,7 @@ class CSB extends BANK
 
     }
 }
+//todo sort and write file change the varible name and method
 public class Emmalu
 {
     public static void main(String[] args)
@@ -158,6 +169,27 @@ public class Emmalu
         ArrayList<CSB> Csbaccounts = new ArrayList<CSB>();
         ArrayList<STATEBANK> Saccounts = new ArrayList<STATEBANK>();
         //LinkedList<SBI> ll = new LinkedList<SBI>();
+        try
+        {
+            FileReader file = new FileReader("SBI.txt");
+            BufferedReader br = new BufferedReader(file);
+            String line;
+            while((line = br.readLine()) != null) {
+                //Splits each line into words
+                String[] words = line.split(" ");
+                int ind=Integer.parseInt(words[0]);
+                String name=words[1];
+                float bal=Float.parseFloat(words[2]);
+                char gen=words[3].charAt(0);
+                Sbiaccounts.add(new SBI(ind,name,bal,gen));
+
+            }
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error");
+        }
+
 
 
         char ch='y';
@@ -187,26 +219,6 @@ public class Emmalu
                                         int choice = sc.nextInt();
                                         switch (choice) {
                                             case 1:
-                                                try
-                                                {
-                                                    FileReader file = new FileReader("SBI.txt");
-                                                    BufferedReader br = new BufferedReader(file);
-                                                    String line;
-                                                    while((line = br.readLine()) != null) {
-                                                        //Splits each line into words
-                                                        String[] words = line.split(" ");
-                                                        for (String a:words)
-                                                        {
-                                                            System.out.println(a);
-                                                        }
-
-
-                                                    }
-                                                }
-                                                catch (IOException e)
-                                                {
-                                                    System.out.println("Error");
-                                                }
 
                                                 int ind = Sbiaccounts.size();
                                                 Sbiaccounts.add(new SBI(ind));
