@@ -1,162 +1,17 @@
 package com.company;
+import com.company.*;
 import java.io.*;
 import java.util.*;
 import emjdetails.*;
-class BANK {
-    //changes by adarsh and emmalu
-    //Emmalu Change
-    static String Bname="Central Bank";
-    static String CEO="K C JOSEPH";
-    static int EST=1983;
-    Scanner sc = new Scanner(System.in);
-    int id = 1000;
-    String name;
-    float balance;
-    char gender;
 
-    BANK(int i)
-    {
-        id=id+i;
-        System.out.print("Enter name :");
-        name = sc.nextLine();
-        try {
-            System.out.print("Enter Balance :");
-            balance = sc.nextFloat();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Enter integer");
-        }
-
-        System.out.print("Enter gender(m/f) :");
-        gender = sc.next().charAt(0);
-    }
-    BANK(int ind,String nm,Float bal,char gen)
-    {
-        id=ind;
-        name=nm;
-        balance=bal;
-        gender=gen;
-    }
+/**
+ * @author Emmalu
+ * @since 2021-11-29
+ * java program
+ */
 
 
-    static void Bankdetails() {
-        System.out.println("\tBank Name:"+Bname);
-        System.out.println("\tCEO :"+CEO);
-        System.out.println("\tEST :"+EST);
-        System.out.println("---------------------------");
-    }
-
-    void printdeatils() {
-        Formatter fmt = new Formatter();
-        fmt.format("%14s %14s %14s %14s\n", id, name, balance,gender);
-        System.out.println(fmt);
-
-    }
-    void deposit()
-    {
-        System.out.print("Enter the AMount to deposit :");
-        int b= sc.nextInt();
-        balance=balance+b;
-        System.out.println("New Balance :"+balance);
-    }
-}
-    class STATEBANK
-    {
-        //changes by adarsh and emmalu
-        //Emmalu Change
-        static String Bname="State Bank";
-        static String CEO="Emmalu JOSEPH";
-        static int EST=2000;
-        Scanner sc = new Scanner(System.in);
-        int id=1000;
-        String name;
-        float balance;
-        char gender;
-        STATEBANK(int i)
-        {
-            id=id+i;
-            System.out.print("Enter name :");
-            name = sc.nextLine();
-            System.out.print("Enter Balance :");
-            balance = sc.nextFloat();
-            System.out.print("Enter gender(m/f) :");
-            gender = sc.next().charAt(0);
-
-        }
-
-        static void Bankdetails()
-        {
-            System.out.println("\tBank Name:"+Bname);
-            System.out.println("\tCEO :"+CEO);
-            System.out.println("\tEST :"+EST);
-            System.out.println("---------------------------");
-        }
-        void printdeatils()
-        {
-            Formatter fmt = new Formatter();
-            fmt.format("%14s %14s %14s %14s\n", id, name, balance,gender);
-            System.out.println(fmt);
-        }
-        void deposit()
-        {
-            System.out.print("Enter the AMount to deposit :");
-            int b= sc.nextInt();
-            balance=balance+b;
-            System.out.println("New Balance :"+balance);
-
-        }
-
-
-
-}
-class SBI extends BANK
-{
-
-    SBI(int i) {
-        super(i);
-    }
-    SBI(int ind,String name,float bal,char gen)
-    {
-        super(ind,name,bal,gen);
-    }
-
-    static void loan()
-        {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Loan details");
-            System.out.print("Enter the amount for loan :");
-            int loan_amount=sc.nextInt();
-            System.out.print("Enter the NUmber of years :");
-            int loan_years=sc.nextInt();
-            float interest= (float) (loan_amount*0.04*loan_years);
-            float Total=loan_amount+interest;
-            System.out.println("AMount to be repiad :"+Total);
-        }
-}
-class CSB extends BANK
-{
-
-    CSB(int i)
-    {
-        super(1000+i);
-    }
-
-    static void loan()
-    {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Loan details");
-        System.out.print("Enter the amount for loan :");
-        int loan_amount=sc.nextInt();
-        System.out.print("Enter the NUmber of years :");
-        int loan_years=sc.nextInt();
-        float interest= (float) (loan_amount*0.05*loan_years);
-        float Total=loan_amount+interest;
-        System.out.println("AMount to be repiad :"+Total);
-
-    }
-}
-//todo sort and write file change the varible name and method
+//todo sort and write file
 public class Emmalu
 {
     public static void main(String[] args)
@@ -165,10 +20,10 @@ public class Emmalu
 
         emdetails x = new emdetails();
         x.msg();
-        ArrayList<SBI> Sbiaccounts = new ArrayList<SBI>();
-        ArrayList<CSB> Csbaccounts = new ArrayList<CSB>();
-        ArrayList<STATEBANK> Saccounts = new ArrayList<STATEBANK>();
-        //LinkedList<SBI> ll = new LinkedList<SBI>();
+        ArrayList<Sbi> Sbiaccounts = new ArrayList<Sbi>();
+        ArrayList<Csb> Csbaccounts = new ArrayList<Csb>();
+        ArrayList<StateBank> Saccounts = new ArrayList<StateBank>();
+        //LinkedList<Sbi> ll = new LinkedList<Sbi>();
         try
         {
             FileReader file = new FileReader("SBI.txt");
@@ -181,7 +36,27 @@ public class Emmalu
                 String name=words[1];
                 float bal=Float.parseFloat(words[2]);
                 char gen=words[3].charAt(0);
-                Sbiaccounts.add(new SBI(ind,name,bal,gen));
+                Sbiaccounts.add(new Sbi(ind,name,bal,gen));
+
+            }
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error");
+        }
+        try
+        {
+            FileReader file = new FileReader("CSB.txt");
+            BufferedReader br = new BufferedReader(file);
+            String line;
+            while((line = br.readLine()) != null) {
+                //Splits each line into words
+                String[] words = line.split(" ");
+                int ind=Integer.parseInt(words[0]);
+                String name=words[1];
+                float bal=Float.parseFloat(words[2]);
+                char gen=words[3].charAt(0);
+                Csbaccounts.add(new Csb(ind,name,bal,gen));
 
             }
         }
@@ -199,21 +74,21 @@ public class Emmalu
         {
             try {
 
-                System.out.print("1. CENTRAL BANK\n2. STATE  BANK\nEnter your Choice :");
+                System.out.print("1. CENTRAL Bank\n2. STATE  Bank\nEnter your Choice :");
                 int cho = sc.nextInt();
                 switch (cho) {
 
                     case 1:
                         while (ch == 'y' | ch == 'Y') {
-                            BANK.Bankdetails();
-                            System.out.print("1. STATE BANK OF INDIA \n2. CATHOLIC SYRIAN BANK\nEnter your Choice :");
+                            Bank.bankDetails();
+                            System.out.print("1. STATE Bank OF INDIA \n2. CATHOLIC SYRIAN Bank\nEnter your Choice :");
                             int choi = sc.nextInt();
                             switch (choi) {
 
                                 case 1:
                                     char conti1 = 'y';
                                     while (conti1 == 'y' | conti1 == 'Y') {
-                                        System.out.println("Welcome to STATE BANK OF INDIA");
+                                        System.out.println("Welcome to STATE Bank OF INDIA");
                                         System.out.println("-------------------------------------");
                                         System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\n5. Download Details\n6. Get Details\nEnter your Choice :");
                                         int choice = sc.nextInt();
@@ -221,7 +96,7 @@ public class Emmalu
                                             case 1:
 
                                                 int ind = Sbiaccounts.size();
-                                                Sbiaccounts.add(new SBI(ind));
+                                                Sbiaccounts.add(new Sbi(ind));
                                                 break;
                                             case 2:
                                                 Formatter fmt = new Formatter();
@@ -230,14 +105,14 @@ public class Emmalu
                                                 System.out.println("------------------------------------------------------------------------------");
                                                 int len = Sbiaccounts.size();
                                                 for (int i = 0; i < len; i++) {
-                                                    Sbiaccounts.get(i).printdeatils();
+                                                    Sbiaccounts.get(i).printDeatils();
                                                 }
                                                 break;
                                             case 3:
                                                 System.out.print("Enter Account number to insert :");
                                                 int acc = sc.nextInt();
                                                 int flag = 0;
-                                                for (SBI i : Sbiaccounts) {
+                                                for (Sbi i : Sbiaccounts) {
                                                     if (i.id == acc) {
                                                         i.deposit();
                                                         flag = 1;
@@ -248,14 +123,14 @@ public class Emmalu
                                                 }
                                                 break;
                                             case 4:
-                                                SBI.loan();
+                                                Sbi.loan();
                                                 break;
                                             case 5:
                                                 try {
-                                                    File new1 = new File("SBI.txt");
+                                                    File new1 = new File("Sbi.txt");
                                                     OutputStream os = new FileOutputStream(new1);
                                                     PrintWriter pw = new PrintWriter(os);
-                                                    for (SBI i : Sbiaccounts) {
+                                                    for (Sbi i : Sbiaccounts) {
                                                         pw.print(+ i.id);
                                                         pw.print(" " + i.name);
                                                         pw.print(" " + i.balance);
@@ -279,9 +154,11 @@ public class Emmalu
 
                                                     }
 
-                                                } catch (FileNotFoundException e) {
-                                                    System.out.println("Error occured");
-                                                }
+                                                    }
+                                                catch (FileNotFoundException e)
+                                                    {
+                                                        System.out.println("Error occured");
+                                                    }
                                         }
 
                                         System.out.print("Do you want to continue(y/n) :");
@@ -291,14 +168,14 @@ public class Emmalu
                                 case 2:
                                     char conti2 = 'y';
                                     while (conti2 == 'y' | conti2 == 'Y') {
-                                        System.out.println("Welcome to CATHOLIC SYRIAN BANK");
+                                        System.out.println("Welcome to CATHOLIC SYRIAN Bank");
                                         System.out.println("-------------------------------------");
-                                        System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\nEnter your Choice :");
+                                        System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\n5. Download Details\n6. Get Details\nEnter your Choice :");
                                         int choice2 = sc.nextInt();
                                         switch (choice2) {
                                             case 1:
                                                 int ind = Csbaccounts.size();
-                                                Csbaccounts.add(new CSB(ind));
+                                                Csbaccounts.add(new Csb(ind));
                                                 break;
                                             case 2:
                                                 Formatter fmt = new Formatter();
@@ -307,14 +184,14 @@ public class Emmalu
                                                 System.out.println("---------------------------------------------------------------------------------------------");
                                                 int len = Csbaccounts.size();
                                                 for (int i = 0; i < len; i++) {
-                                                    Csbaccounts.get(i).printdeatils();
+                                                    Csbaccounts.get(i).printDeatils();
                                                 }
                                                 break;
                                             case 3:
                                                 System.out.print("Enter Account number to insert :");
                                                 int acc = sc.nextInt();
                                                 int flag = 0;
-                                                for (CSB i : Csbaccounts) {
+                                                for (Csb i : Csbaccounts) {
                                                     if (i.id == acc) {
                                                         i.deposit();
                                                         flag = 1;
@@ -325,8 +202,40 @@ public class Emmalu
                                                 }
                                                 break;
                                             case 4:
-                                                CSB.loan();
+                                                Csb.loan();
                                                 break;
+                                            case 5:
+                                                try {
+                                                    File new1 = new File("CSB.txt");
+                                                    OutputStream os = new FileOutputStream(new1);
+                                                    PrintWriter pw = new PrintWriter(os);
+                                                    for (Csb i : Csbaccounts) {
+                                                        pw.print(+ i.id);
+                                                        pw.print(" " + i.name);
+                                                        pw.print(" " + i.balance);
+                                                        pw.println(" " + i.gender);
+
+                                                    }
+                                                    pw.close();
+                                                    System.out.println("Success...");
+
+                                                } catch (IOException e) {
+                                                    System.out.println(e);
+                                                }
+                                                break;
+                                            case 6:
+                                                try {
+                                                    File fr = new File("CSB.txt");
+                                                    Scanner frsc = new Scanner(fr);
+                                                    while (frsc.hasNextLine()) {
+                                                        String data = frsc.nextLine();
+                                                        System.out.println(data);
+
+                                                    }
+
+                                                } catch (FileNotFoundException e) {
+                                                    System.out.println("Error occured");
+                                                }
 
                                         }
                                         System.out.print("Do you want to continue(y/n) :");
@@ -341,18 +250,18 @@ public class Emmalu
 
                     case 2:
                         while (ch == 'y' | ch == 'Y') {
-                            STATEBANK.Bankdetails();
+                            StateBank.bankDetails();
                             System.out.print("1. Add Details\n2. Print Details\nEnter your Choice :");
                             int choice = sc.nextInt();
                             switch (choice) {
                                 case 1:
                                     int ind = Saccounts.size();
-                                    Saccounts.add(new STATEBANK(ind));
+                                    Saccounts.add(new StateBank(ind));
                                     break;
                                 case 2:
                                     int len = Saccounts.size();
                                     for (int i = 0; i < len; i++) {
-                                        Saccounts.get(i).printdeatils();
+                                        Saccounts.get(i).printDeatils();
                                     }
                                     break;
                             }
@@ -373,16 +282,16 @@ public class Emmalu
 
 
         }
-        /*Set<BANK> hSet1 = new HashSet<BANK>(Caccounts);
+        /*Set<Bank> hSet1 = new HashSet<Bank>(Caccounts);
         hSet1.addAll(Caccounts);
         System.out.println(hSet1.size());
 
-        Set<BANK> hSet2 = new HashSet<BANK>(Caccounts);
+        Set<Bank> hSet2 = new HashSet<Bank>(Caccounts);
         hSet2.addAll(Caccounts);
         System.out.println(hSet2.size());
 
 
-        Set<BANK> union = new HashSet<BANK>(hSet1);
+        Set<Bank> union = new HashSet<Bank>(hSet1);
         union.addAll(hSet1);
         System.out.print("Union of the two Set");
         System.out.println(union);*/
