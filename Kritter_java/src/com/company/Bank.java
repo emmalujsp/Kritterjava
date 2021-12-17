@@ -3,7 +3,8 @@ package com.company;
 import java.util.Formatter;
 import java.util.Scanner;
 
-public class Bank {
+public class Bank
+{
     static String Bname="Central Bank";
     static String CEO="K C JOSEPH";
     static int EST=1983;
@@ -56,7 +57,20 @@ public class Bank {
     {
         System.out.print("Enter the AMount to deposit :");
         int b= sc.nextInt();
-        balance=balance+b;
-        System.out.println("New Balance :"+balance);
+        try {
+            if(b > 0)
+            {
+                balance = balance + b;
+                System.out.println("New Balance :" + balance);
+            }
+            else{
+                throw new MyException("Number is negative");
+            }
+        }
+        catch (MyException m) {
+            System.out.println(m);
+        }
+
+
     }
 }

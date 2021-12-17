@@ -1,7 +1,10 @@
 package com.company;
+
 import com.company.*;
+
 import java.io.*;
 import java.util.*;
+
 import emjdetails.*;
 
 /**
@@ -12,10 +15,8 @@ import emjdetails.*;
 
 
 //todo sort and write file
-public class Emmalu
-{
-    public static void main(String[] args)
-    {
+public class Emmalu {
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
         emdetails x = new emdetails();
@@ -24,54 +25,46 @@ public class Emmalu
         ArrayList<Csb> Csbaccounts = new ArrayList<Csb>();
         ArrayList<StateBank> Saccounts = new ArrayList<StateBank>();
         //LinkedList<Sbi> ll = new LinkedList<Sbi>();
-        try
-        {
+        try {
             FileReader file = new FileReader("SBI.txt");
             BufferedReader br = new BufferedReader(file);
             String line;
-            while((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
                 //Splits each line into words
                 String[] words = line.split(" ");
-                int ind=Integer.parseInt(words[0]);
-                String name=words[1];
-                float bal=Float.parseFloat(words[2]);
-                char gen=words[3].charAt(0);
-                Sbiaccounts.add(new Sbi(ind,name,bal,gen));
+                int ind = Integer.parseInt(words[0]);
+                String name = words[1];
+                float bal = Float.parseFloat(words[2]);
+                char gen = words[3].charAt(0);
+                Sbiaccounts.add(new Sbi(ind, name, bal, gen));
 
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("Error");
         }
-        try
-        {
+        try {
             FileReader file = new FileReader("CSB.txt");
             BufferedReader br = new BufferedReader(file);
             String line;
-            while((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
                 //Splits each line into words
                 String[] words = line.split(" ");
-                int ind=Integer.parseInt(words[0]);
-                String name=words[1];
-                float bal=Float.parseFloat(words[2]);
-                char gen=words[3].charAt(0);
-                Csbaccounts.add(new Csb(ind,name,bal,gen));
+                int ind = Integer.parseInt(words[0]);
+                String name = words[1];
+                float bal = Float.parseFloat(words[2]);
+                char gen = words[3].charAt(0);
+                Csbaccounts.add(new Csb(ind, name, bal, gen));
 
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("Error");
         }
 
 
-
-        char ch='y';
+        char ch = 'y';
         System.out.println("Welcome");
 
-        while (ch == 'y' | ch == 'Y')
-        {
+        while (ch == 'y' | ch == 'Y') {
             try {
 
                 System.out.print("1. CENTRAL Bank\n2. STATE  Bank\nEnter your Choice :");
@@ -131,7 +124,7 @@ public class Emmalu
                                                     OutputStream os = new FileOutputStream(new1);
                                                     PrintWriter pw = new PrintWriter(os);
                                                     for (Sbi i : Sbiaccounts) {
-                                                        pw.print(+ i.id);
+                                                        pw.print(+i.id);
                                                         pw.print(" " + i.name);
                                                         pw.print(" " + i.balance);
                                                         pw.println(" " + i.gender);
@@ -154,11 +147,9 @@ public class Emmalu
 
                                                     }
 
-                                                    }
-                                                catch (FileNotFoundException e)
-                                                    {
-                                                        System.out.println("Error occured");
-                                                    }
+                                                } catch (FileNotFoundException e) {
+                                                    System.out.println("Error occured");
+                                                }
                                         }
 
                                         System.out.print("Do you want to continue(y/n) :");
@@ -210,7 +201,7 @@ public class Emmalu
                                                     OutputStream os = new FileOutputStream(new1);
                                                     PrintWriter pw = new PrintWriter(os);
                                                     for (Csb i : Csbaccounts) {
-                                                        pw.print(+ i.id);
+                                                        pw.print(+i.id);
                                                         pw.print(" " + i.name);
                                                         pw.print(" " + i.balance);
                                                         pw.println(" " + i.gender);
@@ -270,9 +261,7 @@ public class Emmalu
                         }
                         break;
                 }
-            }
-            catch(Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Invailid Format............");
             }
 
