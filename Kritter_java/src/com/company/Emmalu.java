@@ -1,7 +1,7 @@
 package com.company;
 
 import com.company.*;
-
+import java.sql.*;
 import java.io.*;
 import java.util.*;
 
@@ -18,6 +18,12 @@ import emjdetails.*;
 public class Emmalu {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
+        String MySQLURL = "jdbc:mysql://localhost:3306/bank?useSSL=false";
+        String databseUserName = "root";
+        String databasePassword = "emmalujsp";
+
+        Connection con = null;
+        con = DriverManager.getConnection(MySQLURL, databseUserName, databasePassword);
 
         emdetails x = new emdetails();
         x.msg();
@@ -83,7 +89,7 @@ public class Emmalu {
                                     while (conti1 == 'y' | conti1 == 'Y') {
                                         System.out.println("Welcome to STATE Bank OF INDIA");
                                         System.out.println("-------------------------------------");
-                                        System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\n5. Download Details\n6. Get Details\nEnter your Choice :");
+                                        System.out.print("1. Add Account\n2. Print Details\n3. Deposit Money\n4. Loan Calculator\n5. Download Details\n6. Get Details\n7. Insert into Database\nEnter your Choice :");
                                         int choice = sc.nextInt();
                                         switch (choice) {
                                             case 1:
@@ -150,6 +156,27 @@ public class Emmalu {
                                                 } catch (FileNotFoundException e) {
                                                     System.out.println("Error occured");
                                                 }
+                                            case 7:try {
+
+                                                if (con != null) {
+                                                    System.out.println("Database connection is successful !!!!");
+                                                    String query = " insert into sbi (id, name, balance, gender)" + " values (?, ?, ?, ?)";
+                                                    PreparedStatement preparedStmt = con.prepareStatement(query);
+                                                    for (int i = 0; i < Sbiaccounts.size(); i++) {
+                                                        preparedStmt.setInt    (1, Sbiaccounts.get(i).id);
+                                                        preparedStmt.setString (2, Sbiaccounts.get(i).name);
+                                                        preparedStmt.setFloat    (3, Sbiaccounts.get(i).balance);
+                                                        preparedStmt.setString (4, String.valueOf(Sbiaccounts.get(i).gender));
+                                                        preparedStmt.execute();
+
+                                                    }
+
+                                                    con.close();
+
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
                                         }
 
                                         System.out.print("Do you want to continue(y/n) :");
