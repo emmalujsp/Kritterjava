@@ -2,7 +2,6 @@ package com.company;
 
 import java.util.Formatter;
 import java.util.Scanner;
-// i am making chnages in bank.java
 
 public class Bank
 {
