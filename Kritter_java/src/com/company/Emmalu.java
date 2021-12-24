@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.*;
+
 import java.sql.*;
 import java.io.*;
 import java.util.*;
@@ -15,6 +16,7 @@ import emjdetails.*;
 
 
 //todo sort and write file
+//here i am making changes
 public class Emmalu {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
@@ -99,13 +101,17 @@ public class Emmalu {
                                                 break;
                                             case 2:
                                                 Formatter fmt = new Formatter();
+                                                System.out.print("Enter the id :");
+                                                int temp = sc.nextInt();
                                                 fmt.format("%14s %14s %14s %14s\n", "ID", "NAME", "BALANCE", "GENDER");
                                                 System.out.println(fmt);
                                                 System.out.println("------------------------------------------------------------------------------");
                                                 int len = Sbiaccounts.size();
                                                 for (int i = 0; i < len; i++) {
-                                                    Sbiaccounts.get(i).printDeatils();
+                                                    if (Sbiaccounts.get(i).id == temp)
+                                                        Sbiaccounts.get(i).printDeatils();
                                                 }
+
                                                 break;
                                             case 3:
                                                 System.out.print("Enter Account number to insert :");
@@ -156,27 +162,35 @@ public class Emmalu {
                                                 } catch (FileNotFoundException e) {
                                                     System.out.println("Error occured");
                                                 }
-                                            case 7:try {
+                                            case 7:
+                                                try {
 
-                                                if (con != null) {
-                                                    System.out.println("Database connection is successful !!!!");
-                                                    String query = " insert into sbi (id, name, balance, gender)" + " values (?, ?, ?, ?)";
-                                                    PreparedStatement preparedStmt = con.prepareStatement(query);
-                                                    for (int i = 0; i < Sbiaccounts.size(); i++) {
-                                                        preparedStmt.setInt    (1, Sbiaccounts.get(i).id);
-                                                        preparedStmt.setString (2, Sbiaccounts.get(i).name);
-                                                        preparedStmt.setFloat    (3, Sbiaccounts.get(i).balance);
-                                                        preparedStmt.setString (4, String.valueOf(Sbiaccounts.get(i).gender));
-                                                        preparedStmt.execute();
+                                                    if (con != null) {
+                                                        System.out.println("Database connection is successful !!!!");
+                                                        String query = " insert into sbi (id, name, balance, gender)" + " values (?, ?, ?, ?)";
+                                                        PreparedStatement preparedStmt = con.prepareStatement(query);
+                                                        for (int i = 0; i < Sbiaccounts.size(); i++) {
+                                                            preparedStmt.setInt(1, Sbiaccounts.get(i).id);
+                                                            preparedStmt.setString(2, Sbiaccounts.get(i).name);
+                                                            preparedStmt.setFloat(3, Sbiaccounts.get(i).balance);
+                                                            preparedStmt.setString(4, String.valueOf(Sbiaccounts.get(i).gender));
+                                                            preparedStmt.execute();
+
+                                                        }
+
 
                                                     }
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                } finally {
+                                                    try {
+                                                        if (con != null)
+                                                            con.close();
 
-                                                    con.close();
-
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
                                                 }
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
                                         }
 
                                         System.out.print("Do you want to continue(y/n) :");
