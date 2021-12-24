@@ -55,6 +55,7 @@ public class Bank
     }
     void deposit()
     {
+
         System.out.print("Enter the AMount to deposit :");
         int b= sc.nextInt();
         try {
